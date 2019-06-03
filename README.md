@@ -1,5 +1,3 @@
-==============================
-[//]: # (Badges)
 [![Travis Build Status](https://travis-ci.org/choderalab/fortuna.png)](https://travis-ci.org/choderalab/fortuna)
 [![codecov](https://codecov.io/gh/choderalab/fortuna/branch/master/graph/badge.svg)](https://codecov.io/gh/choderalab/fortuna/branch/master)
 
