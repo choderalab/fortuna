@@ -4,7 +4,7 @@ Methodologies for adaptive sampling
 """
 
 # Add imports here
-from .bayesianbandits import *
+from .bandits import *
 
 # Handle versioneer
 from ._version import get_versions
