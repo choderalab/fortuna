@@ -22,4 +22,14 @@ def test_bernoulli(probability=0.7,tolerance=0.1,nsteps=500):
         total += reward
 
     average = float(total) / float(nsteps)
-    assert ( abs(average - probability) <= tolerance ), f'The average reward is not close enough to the Bernoulli probability. Probability = {probability}, average = {average} with tolerance = {tolerance}'
+    # check that the result of pulling the bandit follows the probability that it should
+    assert ( abs(average - probability) <= tolerance ), f'The average reward is not close enough to the liklihood. Probability = {probability}, average = {average} with tolerance = {tolerance}'
+
+    # check that the posterior is in good agreement with the probability
+    total = 0
+    for i in range(0,nsteps):
+        sample = bandit.sample()
+        total += sample
+
+    average = float(total) / float(nsteps)
+    assert ( abs(average - probability) <= tolerance ), f'The average of the posterior is not close enough to the likelihood. Probability = {probability}, average = {average} with tolerance = {tolerance}'

@@ -8,7 +8,12 @@ Handles the primary functions
 __author__ = "Hannah E. Bruce Macdonald"
 
 import numpy as np
-from scipy.stats import bernoulli
+from scipy.stats import bernoulli,beta
+
+import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
+
 
 
 class Bernoulli(object):
@@ -27,8 +32,8 @@ class Bernoulli(object):
     def __init__(self,probability):
         self.p = probability
         assert (self.p >= 0. and self.p <=1.), 'probability distribution must fall between 0. and 1.'
-        self.a = 0
-        self.b = 0
+        self.a = 1
+        self.b = 1
         self.steps = 0
 
     def assign_prior(self,a,b):
@@ -79,7 +84,7 @@ class Bernoulli(object):
             Description of returned object.
 
         """
-        return bernoulli.rvs(self.p)
+        return bool(bernoulli.rvs(self.p))
 
     def update(self,reward):
         """Update the prior hyperparameters
@@ -97,3 +102,16 @@ class Bernoulli(object):
         self.steps +=1
         self.a += reward
         self.b += (1 - reward)
+
+    def plot_prior(self,color='blue'):
+        plt.vlines(self.p,ymin=0,ymax=1,color=color)
+        plt.xlim([0.,1.])
+
+
+    def plot_posterior(self,color='blue'):
+        x = np.linspace(0.,1.,100)
+        y = beta.pdf(x,self.a,self.b)
+        plt.plot(x,y,color=color,alpha=0.8)
+        plt.fill_between(x,y,color=color,alpha=0.3)
+        plt.ylabel('Probability')
+        plt.xlim([0.,1.])
