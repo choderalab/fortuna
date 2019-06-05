@@ -6,6 +6,7 @@ Methodologies for adaptive sampling
 # Add imports here
 from .bandits import *
 from .choice import *
+from .VDBE import *
 
 # Handle versioneer
 from ._version import get_versions

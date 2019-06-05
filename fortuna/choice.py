@@ -88,7 +88,6 @@ def epsilon_decreasing(options,iteration,rate=1.,reverse=False):
     e = np.exp(-steps*rate)
     return epsilon(options,e=e,reverse=reverse)
 
-
 def boltzmann(options,T=1,reverse=False):
     """ Boltzmann algorithm for selecting sampled bandits
 
