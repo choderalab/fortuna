@@ -88,7 +88,6 @@ def epsilon_decreasing(options,iteration,rate=1.,reverse=False):
     e = np.exp(-steps*rate)
     return epsilon(options,e=e,reverse=reverse)
 
-
 def boltzmann(options,T=1,reverse=False):
     """ Boltzmann algorithm for selecting sampled bandits
 
@@ -115,3 +114,27 @@ def boltzmann(options,T=1,reverse=False):
     normalised = [i/N for i in expectations]
     chosen = np.random.choice(options,p=normalised)
     return options.index(chosen)
+
+def UCB(options,steps,iteration):
+    """ Upper-confidence bounds (UCB) algorithm, which models optimisim in the face of uncertainty. i.e. sampling of less sampled bandits is increased
+
+    Parameters
+    ----------
+    options : list
+        list of the bandits samples
+    steps : list
+        list of the number of times each bandit has been sampled
+    iteration : int
+        the iteration of the adaptive sampling scheme
+
+    Returns
+    -------
+    int
+        index of the selected bandit
+
+    """
+
+    assert ( 0 not in steps ), 'UCB algorithm requires an initial single pull of each bandit'
+    weights = [(2*np.log(iteration)/n)**0.5 for n in steps]
+    adjusted_options = [(x+y) for x,y in zip(options,weights)]
+    return np.argmax(adjusted_options)
