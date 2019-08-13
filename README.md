@@ -4,7 +4,9 @@
 
 # FORTUNA
 
-Methodologies for adaptive sampling
+Methods for adaptive sampling.
+
+* Bayesian bandits
 
 ## License
 This software is licensed under the [MIT license](https://opensource.org/licenses/MIT), a permissive open source license.
@@ -27,3 +29,5 @@ have concluded.
  
 Project based on the 
 [Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms) version 1.0.
+
+This project is supported by [MolSSI](https://molssi.org).
