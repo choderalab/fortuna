@@ -10,7 +10,8 @@ __author__ = "Hannah E. Bruce Macdonald"
 import numpy as np
 import random
 
-def e_greedy(options,e=0.,reverse=False):
+
+def e_greedy(options, e=0., reverse=False):
     """ Epsilon-greedy algorithm for selecting sampled bandits
 
     Parameters
@@ -28,11 +29,12 @@ def e_greedy(options,e=0.,reverse=False):
         index of the selected bandit
 
     """
-    assert (e <= 1. and e >= 0.), f'epsilon in e-greedy algorithm must be between 0 (random) and 1 (greedy).\n epsilon chosen is {e}'
+    assert (e <= 1. and e >= 0.
+            ), f'epsilon in e-greedy algorithm must be between 0 (random) and 1 (greedy).\n epsilon chosen is {e}'
 
     # with a probability of e, return a random choice to sample
     if np.random.rand(1) < e:
-        return random.choice([x for x in range(0,len(options))])
+        return random.choice([x for x in range(0, len(options))])
 
     # otherwise return the maximum sample, or minimum sample if choice is reversed
     if not reverse:
@@ -40,7 +42,8 @@ def e_greedy(options,e=0.,reverse=False):
     else:
         return np.argmin(options)
 
-def epsilon_first(options,stage,reverse=False):
+
+def epsilon_first(options, stage, reverse=False):
     """Epsilon-first algorithm for sampling bandits. An initial stage of random sampling (stage=0) is performed before a second stage of epislon-greedy sampling
 
     Parameters
@@ -58,14 +61,16 @@ def epsilon_first(options,stage,reverse=False):
         index of the selected bandit
 
     """
-    assert (stage in [0,1]), 'Stage {} not recognised. Only stage 0 (random sampling) or stage 1 (epsilon sampling) are allowed'
+    assert (stage in [
+        0, 1
+    ]), 'Stage {} not recognised. Only stage 0 (random sampling) or stage 1 (epsilon sampling) are allowed'
     if stage == 0:
-        return random.choice([x for x in range(0,len(options))])
+        return random.choice([x for x in range(0, len(options))])
     else:
-        return epsilon(options,e=0.,reverse=reverse)
+        return epsilon(options, e=0., reverse=reverse)
 
 
-def epsilon_decreasing(options,iteration,rate=1.,reverse=False):
+def epsilon_decreasing(options, iteration, rate=1., reverse=False):
     """Epsilon-greedy algorithm, where the value of epilon decreases with simulation time. This reflects a regime where the sampling protocol is more random at the beginning, and becomes increasingly greedy. The rate of the decay of epsilon can be changed.
 
     Parameters
@@ -85,10 +90,11 @@ def epsilon_decreasing(options,iteration,rate=1.,reverse=False):
         index of the selected bandit
 
     """
-    e = np.exp(-steps*rate)
-    return epsilon(options,e=e,reverse=reverse)
+    e = np.exp(-steps * rate)
+    return epsilon(options, e=e, reverse=reverse)
 
-def boltzmann(options,T=1,reverse=False):
+
+def boltzmann(options, T=1, reverse=False):
     """ Boltzmann algorithm for selecting sampled bandits
 
     Parameters
@@ -107,15 +113,16 @@ def boltzmann(options,T=1,reverse=False):
 
     """
     if not reverse:
-        expectations = [np.exp(i/T) for i in options]
+        expectations = [np.exp(i / T) for i in options]
     else:
-        expectations = [np.exp(-i/T) for i in options]
+        expectations = [np.exp(-i / T) for i in options]
     N = np.sum(expectations)
-    normalised = [i/N for i in expectations]
-    chosen = np.random.choice(options,p=normalised)
+    normalised = [i / N for i in expectations]
+    chosen = np.random.choice(options, p=normalised)
     return options.index(chosen)
 
-def UCB(options,steps,iteration):
+
+def UCB(options, steps, iteration):
     """ Upper-confidence bounds (UCB) algorithm, which models optimisim in the face of uncertainty. i.e. sampling of less sampled bandits is increased
 
     Parameters
@@ -134,7 +141,7 @@ def UCB(options,steps,iteration):
 
     """
 
-    assert ( 0 not in steps ), 'UCB algorithm requires an initial single pull of each bandit'
-    weights = [(2*np.log(iteration)/n)**0.5 for n in steps]
-    adjusted_options = [(x+y) for x,y in zip(options,weights)]
+    assert (0 not in steps), 'UCB algorithm requires an initial single pull of each bandit'
+    weights = [(2 * np.log(iteration) / n)**0.5 for n in steps]
+    adjusted_options = [(x + y) for x, y in zip(options, weights)]
     return np.argmax(adjusted_options)
