@@ -1,6 +1,7 @@
 [![Travis Build Status](https://travis-ci.org/choderalab/fortuna.png)](https://travis-ci.org/choderalab/fortuna)
 [![codecov](https://codecov.io/gh/choderalab/fortuna/branch/master/graph/badge.svg)](https://codecov.io/gh/choderalab/fortuna/branch/master)
-[![Documentation Status](https://readthedocs.org/projects/fortuna/badge/?version=latest)](https://fortuna.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/fortuna-sampling/badge/?version=latest)](https://fortuna-sampling.readthedocs.io/en/latest/?badge=latest)
+
 
 # FORTUNA
 
