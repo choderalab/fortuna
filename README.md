@@ -1,10 +1,13 @@
 [![Travis Build Status](https://travis-ci.org/choderalab/fortuna.png)](https://travis-ci.org/choderalab/fortuna)
 [![codecov](https://codecov.io/gh/choderalab/fortuna/branch/master/graph/badge.svg)](https://codecov.io/gh/choderalab/fortuna/branch/master)
-[![Documentation Status](https://readthedocs.org/projects/fortuna/badge/?version=latest)](https://fortuna.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/fortuna-sampling/badge/?version=latest)](https://fortuna-sampling.readthedocs.io/en/latest/?badge=latest)
+
 
 # FORTUNA
 
-Methodologies for adaptive sampling
+Methods for adaptive sampling.
+
+* Bayesian bandits
 
 ## License
 This software is licensed under the [MIT license](https://opensource.org/licenses/MIT), a permissive open source license.
@@ -27,3 +30,5 @@ have concluded.
  
 Project based on the 
 [Computational Molecular Science Python Cookiecutter](https://github.com/molssi/cookiecutter-cms) version 1.0.
+
+This project is supported by [MolSSI](https://molssi.org).
