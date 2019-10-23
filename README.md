@@ -8,6 +8,7 @@
 Methods for adaptive sampling.
 
 * Bayesian bandits
+* Optimal experimental design
 
 ## License
 This software is licensed under the [MIT license](https://opensource.org/licenses/MIT), a permissive open source license.
